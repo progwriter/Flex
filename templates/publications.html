@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Publications{% endblock %}
+
+{% block content %}
+<h1>Publications</h1>
+
+<div class="publications">
+  <ul>
+    {% for key, year, text, bibtex, pdf, slides, poster, type in publications %}
+      <li id="{{ key }}">{{ text }}
+        {% for label, target in [('PDF', pdf), ('Slides', slides), ('Poster', poster)] %}
+        <br>
+        {{ "[&nbsp;<a href=\"/%s/%s\">%s</a>&nbsp;]" % (SITEURL + 'static', target, label) if target }} 
+        {% endfor %} 
+      </li>
+    {% endfor %} 
+  </ul>
+</div>
+{% endblock %} 
